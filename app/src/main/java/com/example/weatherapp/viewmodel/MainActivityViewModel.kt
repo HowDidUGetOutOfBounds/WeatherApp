@@ -1,10 +1,21 @@
 package com.example.weatherapp.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.weatherapp.interactors.RequestCompleteListener
+import com.example.weatherapp.interactors.WeatherInfoShowModelImpl
 
-class MainActivityViewModel :ViewModel() {
+class MainActivityViewModel(private val model: WeatherInfoShowModelImpl) : ViewModel() {
 
+    fun getCityList() {
+        model.getCityNames(object : RequestCompleteListener<MutableList<String>>{
+            override fun onRequestSuccess(data: MutableList<String>) {
 
-    //fun getCityList
+            }
+
+            override fun onRequestFailed(errorMessage: String) {
+                // check if we load from JSON.
+            }
+
+        })
+    }
 }
