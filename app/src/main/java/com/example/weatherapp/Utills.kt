@@ -16,3 +16,5 @@ object Cities{
         "Riga" //12
     )
 }
+
+val CITY_KEY : String = "SH_P_City"

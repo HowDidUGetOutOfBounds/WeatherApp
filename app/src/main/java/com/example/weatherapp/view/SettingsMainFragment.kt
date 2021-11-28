@@ -2,20 +2,17 @@ package com.example.weatherapp.view
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.Toast
-import androidx.fragment.app.viewModels
+import android.widget.ArrayAdapter
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.example.weatherapp.Cities
 import com.example.weatherapp.MyApplication
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.FragmentSettingsMainBinding
-import com.example.weatherapp.databinding.FragmentWeatherMainInfoBinding
 import com.example.weatherapp.viewmodel.MainActivityViewModel
 import com.example.weatherapp.viewmodel.MainActivityViewModelFactory
 
@@ -45,7 +42,27 @@ class SettingsMainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        vm.getCityList()
+
+        setLiveDataListeners()
+        loadCachedSpinnerValue()
         setSpinnerClickListener()
+    }
+
+    private fun loadCachedSpinnerValue() {
+        val cachedCityId = vm.loadCityFromCache()
+
+        binding.chooseCitySpinner.setSelection(cachedCityId)
+    }
+
+    private fun setLiveDataListeners() {
+        vm.cityListLiveData.observe(viewLifecycleOwner, { cities ->
+            setCityListSpinner(cities)
+        })
+    }
+
+    private fun setCityListSpinner(cities: MutableList<String>) {
+        binding.chooseCitySpinner.adapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, cities)
     }
 
     private fun setSpinnerClickListener() {
@@ -57,7 +74,8 @@ class SettingsMainFragment : Fragment() {
                     position: Int,
                     id: Long
                 ) {
-                   Log.d("tag", "${Cities.citiesList[position]}")
+                   Log.d("tag", Cities.citiesList[position])
+                    vm.saveChosenCity(position)
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {

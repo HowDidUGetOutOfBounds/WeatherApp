@@ -10,6 +10,7 @@ class SharedPreferencesStorage(context: Context): Storage {
         with(sharedPreferences.edit())
         {
             putString(key, value)
+            apply()
         }
     }
 

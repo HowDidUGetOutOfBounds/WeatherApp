@@ -11,6 +11,6 @@ import com.example.weatherapp.MyApplication
  */
 class MainActivityViewModelFactory(private val application: MyApplication) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return MainActivityViewModel(application.weatherInfoShowModelImpl) as T
+        return MainActivityViewModel(application.weatherInfoShowModelImpl, application.sharedPreferencesStorage) as T
     }
 }
