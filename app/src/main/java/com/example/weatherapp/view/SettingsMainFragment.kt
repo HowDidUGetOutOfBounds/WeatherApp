@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import com.example.weatherapp.R
 import com.example.weatherapp.databinding.FragmentSettingsMainBinding
 import com.example.weatherapp.viewmodel.MainActivityViewModel
 import com.example.weatherapp.viewmodel.MainActivityViewModelFactory
+import java.lang.Thread.sleep
 
 
 class SettingsMainFragment : Fragment() {
@@ -45,7 +47,6 @@ class SettingsMainFragment : Fragment() {
         vm.getCityList()
 
         setLiveDataListeners()
-        loadCachedSpinnerValue()
         setSpinnerClickListener()
     }
 
@@ -58,11 +59,13 @@ class SettingsMainFragment : Fragment() {
     private fun setLiveDataListeners() {
         vm.cityListLiveData.observe(viewLifecycleOwner, { cities ->
             setCityListSpinner(cities)
+            loadCachedSpinnerValue()
         })
     }
 
     private fun setCityListSpinner(cities: MutableList<String>) {
-        binding.chooseCitySpinner.adapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, cities)
+        binding.chooseCitySpinner.adapter =
+            ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, cities)
     }
 
     private fun setSpinnerClickListener() {
@@ -74,7 +77,7 @@ class SettingsMainFragment : Fragment() {
                     position: Int,
                     id: Long
                 ) {
-                   Log.d("tag", Cities.citiesList[position])
+                    Log.d("tag", Cities.citiesList[position])
                     vm.saveChosenCity(position)
                 }
 
