@@ -4,18 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="view.WeatherMainInfoFragment">
+    tools:context="view.WeatherMainInfoFragment"
+    android:background="@color/backgroundMain">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/mainFragmentToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/purple_500"
+        android:background="@color/main_500"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="Main"
         app:titleTextColor="@color/textColor" />
+
+    <include
+        android:id="@+id/layoutWeatherBasic"
+        layout="@layout/layout_weather_basic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainFragmentToolbar" />
+
+    <include
+        android:id="@+id/layout_weather_additional"
+        layout="@layout/layout_weather_addition_info"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/layoutWeatherBasic" />
+
+    <include
+        android:id="@+id/layout_sunset_sunrise"
+        layout="@layout/layout_sunset_sunrise"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonTest"
+        app:layout_constraintTop_toBottomOf="@+id/layout_weather_additional" />
 
     <ProgressBar
         android:id="@+id/progressBar"

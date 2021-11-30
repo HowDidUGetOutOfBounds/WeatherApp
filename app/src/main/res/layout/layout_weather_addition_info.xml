@@ -25,7 +25,7 @@
         android:id="@+id/tv_humidity_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/textBackgroundColor"
+        android:textColor="@color/main_200"
         app:layout_constraintStart_toEndOf="@id/guideline_value_start"
         app:layout_constraintTop_toTopOf="@+id/tv_humidity_label"
         tools:text="70%" />
@@ -43,7 +43,7 @@
         android:id="@+id/tv_pressure_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/textBackgroundColor"
+        android:textColor="@color/main_200"
         app:layout_constraintStart_toStartOf="@id/guideline_value_start"
         app:layout_constraintTop_toTopOf="@+id/tv_pressure_label"
         tools:text="1001 mBar" />
@@ -61,7 +61,7 @@
         android:id="@+id/tv_visibility_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/textBackgroundColor"
+        android:textColor="@color/main_200"
         app:layout_constraintStart_toStartOf="@id/guideline_value_start"
         app:layout_constraintTop_toTopOf="@id/tv_visibility_label"
         tools:text="4 km" />

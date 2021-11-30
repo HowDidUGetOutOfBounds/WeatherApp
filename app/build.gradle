@@ -62,6 +62,9 @@ dependencies {
     //ViewModel
     implementation "android.arch.lifecycle:extensions:1.1.1"
 
+    //Dark Theme
+    implementation 'com.google.android.material:material:1.2.0-alpha06'
+
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

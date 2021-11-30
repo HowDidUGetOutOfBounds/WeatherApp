@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.weatherapp.CITY_KEY
+import com.example.weatherapp.THEME_KEY
 import com.example.weatherapp.interactors.RequestCompleteListener
 import com.example.weatherapp.interactors.WeatherInfoShowModelImpl
 import com.example.weatherapp.storage.SharedPreferencesStorage
@@ -28,12 +29,12 @@ class MainActivityViewModel(private val model: WeatherInfoShowModelImpl, private
     }
 
     fun saveChosenCity(cityId: Int) {
-        sharedPrefStorage.saveCity(CITY_KEY, cityListLiveData.value!![cityId])
+        sharedPrefStorage.saveData(CITY_KEY, cityListLiveData.value!![cityId])
         Log.d("tag", "saveChosenCity: ")
     }
 
     fun loadCityFromCache(): Int {
-        val saved = sharedPrefStorage.getCity(CITY_KEY)
+        val saved = sharedPrefStorage.getData(CITY_KEY)
         var resultId : Int? = 0
 
         if(saved != "")
@@ -49,5 +50,15 @@ class MainActivityViewModel(private val model: WeatherInfoShowModelImpl, private
         Log.d("tag", "$resultId ")
 
         return resultId!!
+    }
+
+    fun saveThemeState(boolean: Boolean)
+    {
+        sharedPrefStorage.saveBool(THEME_KEY, boolean)
+    }
+
+    fun loadThemeState(): Boolean
+    {
+        return  sharedPrefStorage.getBool(THEME_KEY)
     }
 }

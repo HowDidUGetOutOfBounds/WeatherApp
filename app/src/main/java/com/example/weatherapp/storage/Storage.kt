@@ -1,6 +1,8 @@
 package com.example.weatherapp.storage
 
 interface Storage {
-    fun saveCity(key: String, value: String)
-    fun getCity(key: String): String
+    fun saveData(key: String, value: String)
+    fun saveBool(key: String, value: Boolean)
+    fun getData(key: String): String
+    fun getBool(key: String): Boolean
 }

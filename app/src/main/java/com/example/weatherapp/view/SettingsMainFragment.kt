@@ -5,18 +5,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.weatherapp.Cities
 import com.example.weatherapp.MyApplication
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.FragmentSettingsMainBinding
+import com.example.weatherapp.setTheme
 import com.example.weatherapp.viewmodel.MainActivityViewModel
 import com.example.weatherapp.viewmodel.MainActivityViewModelFactory
-import java.lang.Thread.sleep
 
 
 class SettingsMainFragment : Fragment() {
@@ -48,7 +48,21 @@ class SettingsMainFragment : Fragment() {
 
         setLiveDataListeners()
         setSpinnerClickListener()
+        setSwitchClickListener()
     }
+
+    private fun setSwitchClickListener() {
+        binding.darkThemeSwitchCompat.isChecked = vm.loadThemeState()
+
+        binding.darkThemeSwitchCompat.setOnCheckedChangeListener { buttonView, isChecked ->
+            vm.saveThemeState(
+                isChecked
+            )
+
+            setTheme(isChecked)
+        }
+    }
+
 
     private fun loadCachedSpinnerValue() {
         val cachedCityId = vm.loadCityFromCache()

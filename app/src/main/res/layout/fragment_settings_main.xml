@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundMain"
     tools:context="view.SettingsMainFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/settingsFragmentToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/purple_500"
+        android:background="@color/main_500"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -40,6 +41,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/settingsFragmentToolbar" />
 
+    <TextView
+        android:id="@+id/darkThemeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Dark theme"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chooseCitySpinner" />
+
     <Spinner
         android:id="@+id/chooseCitySpinner"
         android:layout_width="wrap_content"
@@ -49,5 +60,14 @@
         app:layout_constraintStart_toEndOf="@+id/chooseCityTextView"
         app:layout_constraintTop_toBottomOf="@+id/settingsFragmentToolbar"
         tools:listitem="@layout/support_simple_spinner_dropdown_item" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/darkThemeSwitchCompat"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/chooseCitySpinner"
+        app:layout_constraintStart_toStartOf="@+id/chooseCitySpinner"
+        app:layout_constraintTop_toBottomOf="@+id/chooseCitySpinner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
