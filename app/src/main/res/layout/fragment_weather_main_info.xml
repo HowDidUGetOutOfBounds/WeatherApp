@@ -79,4 +79,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/output_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:constraint_referenced_ids="layout_sunset_sunrise, layout_weather_additional, layoutWeatherBasic" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

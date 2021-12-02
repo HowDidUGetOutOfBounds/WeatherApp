@@ -5,6 +5,9 @@ import com.example.weatherapp.Cities
 import com.example.weatherapp.data_class.WeatherAPIResponse
 import com.example.weatherapp.network.ApiInterface
 import com.example.weatherapp.network.RetrofitClient
+import com.example.weatherapp.viewmodel.UI_Error
+import com.example.weatherapp.viewmodel.UI_Success
+import com.example.weatherapp.viewmodel.UiState
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -14,34 +17,22 @@ class WeatherInfoShowModelImpl : WeatherInfoShowModel {
         callback.onRequestSuccess(Cities.citiesList)
     }
 
-    override fun getWeatherInfo(
+    override suspend fun getWeatherInfo(
         cityName: String,
-        callback: RequestCompleteListener<WeatherAPIResponse>
-    ) {
+    ): UiState {
 
         val apiInterface:ApiInterface = RetrofitClient.client.create(ApiInterface::class.java)
-        val call: Call<WeatherAPIResponse> = apiInterface.callApiForWeatherInfo(cityName, BuildConfig.APP_ID)
 
-        call.enqueue(object: Callback<WeatherAPIResponse>{
-            override fun onResponse(
-                call: Call<WeatherAPIResponse>,
-                response: Response<WeatherAPIResponse>
-            ) {
-                if(response.body() != null)
-                {
-                    callback.onRequestSuccess(response.body()!!)
-                }
-                else
-                {
-                    callback.onRequestFailed(response.message())
-                }
-            }
+        try {
+            val response: WeatherAPIResponse =
+                apiInterface.callApiForWeatherInfo(cityName, BuildConfig.APP_ID)
+            return UI_Success(response)
+        }
+        catch (cause: Throwable)
+        {
+            return UI_Error("Something went wrong with network call" + cause.localizedMessage)
+        }
 
-            override fun onFailure(call: Call<WeatherAPIResponse>, t: Throwable) {
-               callback.onRequestFailed(t.localizedMessage)
-            }
-
-        })
 
     }
 }
