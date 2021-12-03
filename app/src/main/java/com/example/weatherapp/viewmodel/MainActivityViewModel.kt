@@ -11,8 +11,11 @@ import com.example.weatherapp.interactors.RequestCompleteListener
 import com.example.weatherapp.interactors.WeatherInfoShowModelImpl
 import com.example.weatherapp.storage.SharedPreferencesStorage
 import kotlinx.coroutines.launch
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class MainActivityViewModel(private val model: WeatherInfoShowModelImpl, private val sharedPrefStorage: SharedPreferencesStorage) : ViewModel() {
+@Singleton
+class MainActivityViewModel @Inject constructor (private val model: WeatherInfoShowModelImpl, private val sharedPrefStorage: SharedPreferencesStorage) : ViewModel() {
 
     val cityListLiveData = MutableLiveData<MutableList<String>>()
     val progressBarLiveData = MutableLiveData<Boolean>()

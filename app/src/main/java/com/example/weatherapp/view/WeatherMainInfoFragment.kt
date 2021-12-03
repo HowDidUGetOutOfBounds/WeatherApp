@@ -14,6 +14,7 @@ import com.example.weatherapp.data_class.WeatherData
 import com.example.weatherapp.databinding.FragmentWeatherMainInfoBinding
 import com.example.weatherapp.viewmodel.MainActivityViewModel
 import com.example.weatherapp.viewmodel.MainActivityViewModelFactory
+import javax.inject.Inject
 
 
 class WeatherMainInfoFragment : Fragment() {
@@ -21,7 +22,8 @@ class WeatherMainInfoFragment : Fragment() {
     private var _binding: FragmentWeatherMainInfoBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var vm: MainActivityViewModel
+    @Inject
+    lateinit var vm: MainActivityViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,8 +31,10 @@ class WeatherMainInfoFragment : Fragment() {
     ): View {
         _binding = FragmentWeatherMainInfoBinding.inflate(inflater, container, false)
 
+
+        (requireActivity().application as MyApplication).appComponent.inject(this)
         //initialize viewModel(or get existing)
-        vm = ViewModelProvider(requireActivity(), MainActivityViewModelFactory(this.activity?.application as MyApplication)).get(MainActivityViewModel::class.java)
+        //vm = ViewModelProvider(requireActivity(), MainActivityViewModelFactory(this.activity?.application as MyApplication)).get(MainActivityViewModel::class.java)
 
 
         return binding.root
@@ -69,6 +73,13 @@ class WeatherMainInfoFragment : Fragment() {
 
         vm.weatherInfoFailureLiveData.observe(viewLifecycleOwner, Observer {
             binding.outputGroup.visibility = View.GONE
+        })
+
+        vm.progressBarLiveData.observe(viewLifecycleOwner, Observer {
+            if (it)
+                binding.progressBar.visibility = View.VISIBLE
+            else
+                binding.progressBar.visibility = View.GONE
         })
 
     }

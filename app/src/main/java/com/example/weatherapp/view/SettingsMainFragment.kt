@@ -16,6 +16,7 @@ import com.example.weatherapp.databinding.FragmentSettingsMainBinding
 import com.example.weatherapp.setTheme
 import com.example.weatherapp.viewmodel.MainActivityViewModel
 import com.example.weatherapp.viewmodel.MainActivityViewModelFactory
+import javax.inject.Inject
 
 
 class SettingsMainFragment : Fragment() {
@@ -23,7 +24,8 @@ class SettingsMainFragment : Fragment() {
     private var _binding: FragmentSettingsMainBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var vm: MainActivityViewModel
+    @Inject
+    lateinit var vm: MainActivityViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,11 +33,12 @@ class SettingsMainFragment : Fragment() {
     ): View {
         _binding = FragmentSettingsMainBinding.inflate(inflater, container, false)
 
+        (requireActivity().application as MyApplication).appComponent.inject(this)
         // load existing vm
-        vm = ViewModelProvider(
-            requireActivity(),
-            MainActivityViewModelFactory(this.activity?.application as MyApplication)
-        ).get(MainActivityViewModel::class.java)
+//        vm = ViewModelProvider(
+//            requireActivity(),
+//            MainActivityViewModelFactory(this.activity?.application as MyApplication)
+//        ).get(MainActivityViewModel::class.java)
 
         return binding.root
     }

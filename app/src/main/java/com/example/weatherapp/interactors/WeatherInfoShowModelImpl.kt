@@ -11,8 +11,9 @@ import com.example.weatherapp.viewmodel.UiState
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class WeatherInfoShowModelImpl : WeatherInfoShowModel {
+class WeatherInfoShowModelImpl @Inject constructor(): WeatherInfoShowModel {
     override fun getCityNames(callback: RequestCompleteListener<MutableList<String>>) {
         callback.onRequestSuccess(Cities.citiesList)
     }
