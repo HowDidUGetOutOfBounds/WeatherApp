@@ -15,7 +15,6 @@ import com.example.weatherapp.R
 import com.example.weatherapp.databinding.FragmentSettingsMainBinding
 import com.example.weatherapp.setTheme
 import com.example.weatherapp.viewmodel.MainActivityViewModel
-import com.example.weatherapp.viewmodel.MainActivityViewModelFactory
 import javax.inject.Inject
 
 

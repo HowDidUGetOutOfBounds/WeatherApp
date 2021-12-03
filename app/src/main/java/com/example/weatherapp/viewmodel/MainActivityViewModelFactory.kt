@@ -9,8 +9,8 @@ import com.example.weatherapp.MyApplication
  * which is shared between all fragments that are related to my activity. That's kinda cool
  * @author MrHowDidYouGetOutOfBounds
  */
-class MainActivityViewModelFactory(private val application: MyApplication) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return MainActivityViewModel(application.weatherInfoShowModelImpl, application.sharedPreferencesStorage) as T
-    }
-}
+//class MainActivityViewModelFactory(private val application: MyApplication) : ViewModelProvider.Factory {
+//    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+//        return MainActivityViewModel(application.weatherInfoShowModelImpl, application.sharedPreferencesStorage) as T
+//    }
+//}

@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.weatherapp.MyApplication
@@ -13,7 +11,6 @@ import com.example.weatherapp.R
 import com.example.weatherapp.data_class.WeatherData
 import com.example.weatherapp.databinding.FragmentWeatherMainInfoBinding
 import com.example.weatherapp.viewmodel.MainActivityViewModel
-import com.example.weatherapp.viewmodel.MainActivityViewModelFactory
 import javax.inject.Inject
 
 

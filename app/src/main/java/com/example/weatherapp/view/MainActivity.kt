@@ -7,10 +7,11 @@ import com.example.weatherapp.MyApplication
 import com.example.weatherapp.R
 import com.example.weatherapp.setTheme
 import com.example.weatherapp.viewmodel.MainActivityViewModel
-import com.example.weatherapp.viewmodel.MainActivityViewModelFactory
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
+    @Inject
     lateinit var mainActivityViewModel: MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,10 +19,11 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
         setContentView(R.layout.activity_main)
 
-        mainActivityViewModel = ViewModelProvider(
-            this,
-            MainActivityViewModelFactory(application as MyApplication)
-        ).get(MainActivityViewModel::class.java)
+        (application as MyApplication).appComponent.inject(this)
+//        mainActivityViewModel = ViewModelProvider(
+//            this,
+//            MainActivityViewModelFactory(application as MyApplication)
+//        ).get(MainActivityViewModel::class.java)
 
 
         setTheme(mainActivityViewModel.loadThemeState())

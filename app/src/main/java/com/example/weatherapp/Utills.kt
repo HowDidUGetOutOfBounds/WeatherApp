@@ -14,7 +14,7 @@ object Cities{
         "Vitebsk", //6
         "Gomel", //7
         "Moscow", //8
-        "Vilnuis", //9
+        "Vilnius", //9
         "Kyiv", //10
         "Warsaw", //11
         "Riga" //12

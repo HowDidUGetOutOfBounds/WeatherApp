@@ -12,11 +12,11 @@ class MyApplication : Application() {
         DaggerAppComponent.factory().create(applicationContext)
     }
 
-    val sharedPreferencesStorage by lazy {
-        SharedPreferencesStorage(this)
-    }
-    val weatherInfoShowModelImpl by lazy {
-        WeatherInfoShowModelImpl()
-    }
+//    val sharedPreferencesStorage by lazy {
+//        SharedPreferencesStorage(this)
+//    }
+//    val weatherInfoShowModelImpl by lazy {
+//        WeatherInfoShowModelImpl()
+//    }
 
 }

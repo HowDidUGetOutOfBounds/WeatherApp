@@ -1,6 +1,7 @@
 package com.example.weatherapp.di
 
 import android.content.Context
+import com.example.weatherapp.view.MainActivity
 import com.example.weatherapp.view.SettingsMainFragment
 import com.example.weatherapp.view.WeatherMainInfoFragment
 import dagger.BindsInstance
@@ -18,4 +19,5 @@ interface AppComponent {
 
     fun inject(fragment: WeatherMainInfoFragment)
     fun inject(fragment: SettingsMainFragment)
+    fun inject(activity: MainActivity)
 }
